@@ -1,9 +1,8 @@
 # Custom script to cut video by ELAN segmentations 
 
-# Input arguments
-args <- commandArgs(TRUE)
 
-# Read ELAN file(s) function originally from signglossR
+
+# Read ELAN file(s) function based on function from signglossR
 read_eaf <- function(path){
   if (tools::file_ext(path) == "eaf") {
     filenames <- c(gsub(".*/","",path))
@@ -88,14 +87,14 @@ read_eaf <- function(path){
 }
 
 # Custom split function
-split_elan_video <- function(elan_path, segmentation_tier, video_path, annotation_tag=F, trim=0, video_input_format=".mp4", video_output_format=".mp4"){
+split_elan_video <- function(elan_path, segmentation_tier, video_path, annotation_tag=F, padding=0, video_input_format=".mp4", video_output_format=".mp4"){
   
   original_video_path <- video_path
   
   annotations <- read_eaf(path = elan_path) 
   annotations <- dplyr::mutate(annotations,
-                               start_time = format(as.POSIXct((start-trim) / 1000, "UTC", origin = "1970-01-01"), "%H:%M:%OS3"),
-                               end_time = format(as.POSIXct((end+trim) / 1000, "UTC", origin = "1970-01-01"), "%H:%M:%OS3")) 
+                               start_time = format(as.POSIXct((start-padding) / 1000, "UTC", origin = "1970-01-01"), "%H:%M:%OS3"),
+                               end_time = format(as.POSIXct((end+padding) / 1000, "UTC", origin = "1970-01-01"), "%H:%M:%OS3")) 
   annotations <- dplyr::filter(annotations, tier == segmentation_tier)
   
   for (filename in unique(annotations$file)) {
@@ -134,10 +133,11 @@ split_elan_video <- function(elan_path, segmentation_tier, video_path, annotatio
   }
 }
 
-if (length(args)==3){
-  split_elan_video(elan_path = args[1], segmentation_tier = args[2], video_path = args[3])
-} else { 
-  if (length(args)==6){
-    split_elan_video(elan_path = args[1], segmentation_tier = args[2], video_path = args[3], annotation_tag = as.logical(args[4]), trim = as.numeric(args[5]), video_input_format = args[6])
-  }
-}
+# Example call (uncomment block to run, change arguments accordingly)
+# split_elan_video(elan_path = "/path/to/eaf/file(s)",
+#                  segmentation_tier = "name_of_segmentation_tier",
+#                  video_path = "/path/to/video/file(s)",
+#                  annotation_tag = T, # will add contents of ELAN cells in output filenames
+#                  padding = 0, # adds (or subtracts if negative) frames (in milliseconds) before+after segment duration
+#                  video_input_format = ".mov", # specify input video format in directory (default is .mp4)
+#                  video_output_format = ".mp4") # specify output video format (default is .mp4)
