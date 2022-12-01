@@ -15,8 +15,8 @@ my_eaf <- read_eaf("/Users/username/Desktop/Corpus/EAFs/FrogStory_2022-12-01.eaf
 ```
 
 
-### `split_elan_videos()`
-Uses the `read_eaf()` function to first read an ELAN file (or all ELAN files in a directory) and then split one (if single file path) or more (if entire directory) video files into clips corresponding to the segments on a tier in the ELAN file. The tier used for segmentation needs to be provided. Default input and output video file format is `.mp4` but can be specified with the arguments. Padding can be added with positive or negative values (in milliseconds) adding/removing frames at the beginning and end of the individual clips relative to the cell segment durations.
+### `split_elan_videos()` (requires `ffmpeg` installed)
+Uses the `read_eaf()` function to first read an ELAN file (or all ELAN files in a directory) and then split one (if single file path) or more (if entire directory) video files into clips corresponding to the segments on a tier in the ELAN file running `ffmpeg` commands. The tier used for segmentation needs to be provided. Default input and output video file format is `.mp4` but can be specified with the arguments. Padding can be added with positive or negative values (in milliseconds) adding/removing frames at the beginning and end of the individual clips relative to the cell segment durations.
 
 **Usage:**
 ```
