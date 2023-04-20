@@ -49,4 +49,8 @@ split_elan_video(elan_path = "/Users/username/Desktop/Corpus/EAFs/FrogStory_2022
 
 ## Pacific-centered map
 
-The file `pacific_map.R` contains a simple outline for a Pacific-centered basemap using `ggplot2`. Pacific-centered maps are often preferred in e.g. linguistics. See also Hedvig Skirgårds solution for Pacific-centered (language) maps in R: [HedvigS: Worldmap plotting](https://github.com/HedvigS/personal-cookbook/blob/main/R/Worldmap_plotting.R)
+The file `pacific_map.R` contains a simple outline for a Pacific-centered basemap using `ggplot2`. Pacific-centered maps are often preferred in e.g. linguistics. 
+
+![](./images/pacific_map.png)
+
+See also Hedvig Skirgårds solution for Pacific-centered (language) maps in R: [HedvigS: Worldmap plotting](https://github.com/HedvigS/personal-cookbook/blob/main/R/Worldmap_plotting.R)
