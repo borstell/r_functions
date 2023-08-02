@@ -47,6 +47,8 @@ split_elan_video(elan_path = "/Users/username/Desktop/Corpus/EAFs/FrogStory_2022
                  padding = 100)
 ```
 
+## Segment ELAN "turns" (`segment_elan_turns.R`)
+
 ### `turn_seq()`
 Lets you merge sequences of annotations (in an ELAN type format) into longer utterances ("turns") based on the chronological order of the annotations' start times within each file.
 
