@@ -47,6 +47,16 @@ split_elan_video(elan_path = "/Users/username/Desktop/Corpus/EAFs/FrogStory_2022
                  padding = 100)
 ```
 
+### `turn_seq()`
+Lets you merge sequences of annotations (in an ELAN type format) into longer utterances ("turns") based on the chronological order of the annotations' start times within each file.
+
+![](./images/turn_seq.png)
+
+### `turn_interval()`
+Lets you merge sequences of annotations (in an ELAN type format) into longer utterances ("turns") based on the chronological order of the annotations' start times and a defined interval of maximum allowed duration to the next annotation, by participant (e.g., signer/speaker) within each file.
+
+![](./images/turn_interval.png)
+
 ## Pacific-centered map
 
 The file `pacific_map.R` contains a simple outline for a Pacific-centered basemap using `ggplot2`. Pacific-centered maps are often preferred in e.g. linguistics. 
