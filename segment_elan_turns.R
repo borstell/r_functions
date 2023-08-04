@@ -57,7 +57,7 @@ ggplot() +
   geom_segment(data=turn_seq(df, file = file, start = start, end = end, participant = signer, annotation = annotation, simplify = T),
                aes(x=start, xend=end, y=paste0(signer,"_seq"), yend=paste0(signer, "_seq"), color=signer),
                linewidth=5, show.legend = F, alpha=.5) +
-  geom_segment(data=turn_df, aes(x=start, xend=end, y=paste0(signer, "_", hand), yend=paste0(signer, "_", hand), color=signer),
+  geom_segment(data=df, aes(x=start, xend=end, y=paste0(signer, "_", hand), yend=paste0(signer, "_", hand), color=signer),
                linewidth=5, show.legend = F, alpha=1) +
   labs(y="", x="Time (ms)") +
   facet_wrap(~file, ncol=1)
@@ -76,7 +76,7 @@ ggplot() +
   geom_segment(data=turn_interval(df, file = file, start = start, end = end, participant = signer, annotation = annotation, interval = 800, simplify = T),
                aes(x=start, xend=end, y=paste0(signer,"_800"), yend=paste0(signer, "_800"), color=signer),
                linewidth=5, show.legend = F, alpha=.5) +
-  geom_segment(data=turn_df, aes(x=start, xend=end, y=paste0(signer, "_", hand), yend=paste0(signer, "_", hand), color=signer),
+  geom_segment(data=df, aes(x=start, xend=end, y=paste0(signer, "_", hand), yend=paste0(signer, "_", hand), color=signer),
                linewidth=5, show.legend = F, alpha=1) +
   labs(y="", x="Time (ms)") +
   facet_wrap(~file, ncol=1)
