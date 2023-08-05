@@ -59,6 +59,11 @@ Lets you merge sequences of annotations (in an ELAN type format) into longer utt
 
 ![](./images/turn_interval.jpg)
 
+### `turn_quant()`
+Lets you merge sequences of annotations (in an ELAN type format) into longer utterances ("turns") based on the participant who is uttering the most within each window of 3 annotations chronologically based on the annotations' start times within each file.
+
+![](./images/turn_quant.jpg)
+
 ## Pacific-centered map
 
 The file `pacific_map.R` contains a simple outline for a Pacific-centered basemap using `ggplot2`. Pacific-centered maps are often preferred in e.g. linguistics. 
