@@ -4,7 +4,7 @@ turn_quant <- function(data,  file, start, end, participant, annotation, simplif
   # Create windows of "whose turn" by max signing (number of signs)
   df <- data %>% 
     arrange({{ file }}, {{ start }}) %>% 
-    mutate(whose_turn = slider::slide_chr(signer, ~ names(which.max(table(.x))), .before = 1, .after = 1)) %>% 
+    mutate(whose_turn = slider::slide_chr({{ participant }}, ~ names(which.max(table(.x))), .before = 1, .after = 1)) %>% 
     mutate(current_turn = if_else({{ participant }}==whose_turn, "same", "other")) %>% 
     mutate(turn = consecutive_id(whose_turn))
   if (simplify) {
