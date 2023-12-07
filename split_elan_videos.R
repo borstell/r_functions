@@ -87,7 +87,7 @@ read_eaf <- function(path){
 }
 
 # Custom split function
-split_elan_video <- function(elan_path, segmentation_tier, video_path, annotation_tag=F, padding=0, video_input_format=".mp4", video_output_format=".mp4"){
+split_elan_video <- function(elan_path, segmentation_tier, video_path, annotation_tag=F, annotation_time=F, padding=0, video_input_format=".mp4", video_output_format=".mp4"){
   
   original_video_path <- video_path
   
@@ -117,7 +117,12 @@ split_elan_video <- function(elan_path, segmentation_tier, video_path, annotatio
         tag <- paste0("_", stringr::str_replace_all(current_annotations[i,]$annotation, "[^[:alnum:]]", "-"))
       }
       
-      segment_path <- paste0(bare_video_path, "_", stringr::str_pad(i, width=3, pad="0"), tag)
+      timestamp <- ""
+      if(annotation_time){
+        timestamp <- paste0("_", current_annotations[i,]$start, "_", current_annotations[i,]$end)
+      }
+      
+      segment_path <- paste0(bare_video_path, "_", stringr::str_pad(i, width=3, pad="0"), tag, timestamp)
       
       ffmpeg_cmd <- paste0("ffmpeg -i ", 
                            video_path, 
@@ -138,6 +143,7 @@ split_elan_video <- function(elan_path, segmentation_tier, video_path, annotatio
 #                  segmentation_tier = "name_of_segmentation_tier",
 #                  video_path = "/path/to/video/file(s)",
 #                  annotation_tag = T, # will add contents of ELAN cells in output filenames
+#                  annotation_time = T, # will add timestamps of ELAN cells in output filenames
 #                  padding = 0, # adds (or subtracts if negative) frames (in milliseconds) before+after segment duration
 #                  video_input_format = ".mov", # specify input video format in directory (default is .mp4)
 #                  video_output_format = ".mp4") # specify output video format (default is .mp4)
