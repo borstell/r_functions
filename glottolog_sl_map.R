@@ -49,4 +49,4 @@ ggplot() +
 
 # Save plot ---------------------------------------------------------------
 
-ggsave("Downloads/glottolog_sl_map.png", width = 9, height = 4, units = "in", dpi = 600)
+ggsave("glottolog_sl_map.png", width = 9, height = 4, units = "in", dpi = 600)
